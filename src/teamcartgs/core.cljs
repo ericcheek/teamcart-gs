@@ -3,7 +3,8 @@
 
 (def code-version "1.0.0")
 (def product-lookup-url "https://lambda.teamcart.io/items-details")
-(def checkout-url "https://teamcart.io/checkout#")
+;;(def checkout-url "https://teamcart.io/checkout#")
+(def checkout-url "http://teamcart-site.s3-website-us-east-1.amazonaws.com/checkout/#")
 
 ;; assumes range is 1d either columns or vectors
 (defn range-to-vec [range]
