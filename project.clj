@@ -16,4 +16,12 @@
                                  :pretty-print false
                                  :externs ["resources/gas.ext.js"]
                                  :foreign-libs [{:file "src/entry_points.js"
-                                                 :provides ["teamcartgs.entry-points"]}]}}}})
+                                                 :provides ["teamcartgs.entry-points"]}]}}
+               :redirect {:source-paths ["src_redirect"]
+                          :compiler {:main teamcartgs.redirect
+                                     :optimizations :advanced
+                                     :output-to "export/checkout-redirect.js"
+                                     :output-dir "target"
+                                     :pretty-print false
+                                     :foreign-libs [{:file "src_redirect/entry.js"
+                                                     :provides "teamcartgs.redirect-entry"}]}}}})
