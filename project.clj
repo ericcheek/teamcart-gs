@@ -3,7 +3,8 @@
   :license {:name "Mozilla Public License 2.0" :url "https://www.mozilla.org/en-US/MPL/2.0/"}
 
   :dependencies [[org.clojure/clojure "1.9.0-alpha13"]
-                 [org.clojure/clojurescript "1.9.229"]]
+                 [org.clojure/clojurescript "1.9.229"]
+                 [funcool/cats "2.0.0"]]
 
   :plugins [[lein-cljsbuild "1.1.4"]]
 
@@ -21,7 +22,7 @@
                           :compiler {:main teamcartgs.redirect
                                      :optimizations :advanced
                                      :output-to "export/checkout-redirect.js"
-                                     :output-dir "target"
+                                     :output-dir "checkout-target"
                                      :pretty-print false
                                      :foreign-libs [{:file "src_redirect/entry.js"
                                                      :provides "teamcartgs.redirect-entry"}]}}}})

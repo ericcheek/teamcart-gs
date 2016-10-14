@@ -3,8 +3,7 @@
 
 (def code-version "1.0.0")
 (def product-lookup-url "https://lambda.teamcart.io/items-details")
-;;(def checkout-url "https://teamcart.io/checkout#")
-(def checkout-url "http://teamcart-site.s3-website-us-east-1.amazonaws.com/checkout/#")
+(def checkout-url "https://teamcart.io/checkout/#")
 
 ;; assumes range is 1d either columns or vectors
 (defn range-to-vec [range]
@@ -12,7 +11,6 @@
    range
    js->clj
    flatten))
-
 
 (defn fetch-products-from-api [product-urls]
   (let
@@ -34,7 +32,6 @@
                (.getContentText)
                (.parse js/JSON))]
     result))
-
 
 (defn ^:export get-amazon-product-data [url-range key-range]
   (cond
@@ -70,7 +67,6 @@
            #(extract-keys (get results-map %)))
           (to-array-2d))]
       output-grid)))
-
 
 (defn ^:export get-checkout-link [product-id-range quantity-range]
   (cond
