@@ -59,11 +59,11 @@
          (remote-fetch remaining-ids))]
     (mlet
      [rf remote-fetched]
-     (cache-store rf)
+     (when (pos? (count rf)) (cache-store rf))
      (right (merge rf cache-resolved)))))
 
 (defn fetch-in-cache [cache ids]
-  (try-either 
+  (try-either
    (->>
     (.getAll cache (into-array ids))
     js->clj
@@ -77,21 +77,20 @@
       (into {}))))))
 
 (defn store-in-cache [cache fetched-values]
-  (when (> (count fetched-values) 0)
-    (.putAll
-     cache
-     (->>
-      fetched-values
-      (reduce
-       (fn [m [k v]]
-         (branch
-          v
-          (constantly m)
-          #(assoc m k
-                  (->> % clj->js (.stringify js/JSON)))))
-       {})
-      clj->js)
-     cache-expiration-seconds)))
+  (.putAll
+   cache
+   (->>
+    fetched-values
+    (reduce
+     (fn [m [k v]]
+       (branch
+        v
+        (constantly m)
+        #(assoc m k
+                (->> % clj->js (.stringify js/JSON)))))
+     {})
+    clj->js)
+   cache-expiration-seconds))
 
 (defn fetch-products-from-api [product-urls]
   (let
@@ -119,7 +118,10 @@
      (->>
       (aget response "result")
       js->clj
-      (map-vals right)))
+      (map-vals
+       #(if (= (get % "product-id") nil)
+          (left :product-lookup-failed)
+          (right %)))))
     (left :remote-fetch-failed))))
 
 (defn ^:export get-amazon-product-data [url-range key-range]
