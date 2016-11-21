@@ -17130,12 +17130,27 @@ _Cache.CacheService = function() {};
 /**
  * @return {_Cache.Cache}
  */
-_Cache.CacheService.prototype.getPrivateCache = function() {};
+//_Cache.CacheService.prototype.getPrivateCache = function() {};
 
 /**
  * @return {_Cache.Cache}
  */
-_Cache.CacheService.prototype.getPublicCache = function() {};
+//_Cache.CacheService.prototype.getPublicCache = function() {};
+
+/**
+ * @return {_Cache.Cache}
+ */
+_Cache.CacheService.prototype.getDocumentCache = function() {};
+
+/**
+ * @return {_Cache.Cache}
+ */
+_Cache.CacheService.prototype.getScriptCache = function() {};
+
+/**
+ * @return {_Cache.Cache}
+ */
+_Cache.CacheService.prototype.getUserCache = function() {};
 
 
 /**
