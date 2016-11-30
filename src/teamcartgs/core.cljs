@@ -189,7 +189,7 @@
     (not=
      (.-length product-id-range)
      (.-length quantity-range))
-    "Argument rangges must match in size"
+    "Argument ranges must match in size"
 
     :default
     (let
