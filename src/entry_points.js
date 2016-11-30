@@ -1,9 +1,4 @@
 /**
- * Copyright TeamCart 2016
- * Usage is subject to Terms of Service and Privacy Policy specified on https://teamcart.io/
- */
-
-/**
  * Fetch AmazonProductData
  *
  * @param {range} Range for product urls to fetch
