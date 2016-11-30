@@ -1,0 +1,4 @@
+{:require [teamcartgs.core]
+ :compiler-options {:asset-path "js/teamcartgs.out"
+                    :parallel-build true}}
+ 
