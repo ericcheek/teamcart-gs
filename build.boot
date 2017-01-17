@@ -4,15 +4,16 @@
 
  :compiler-options {:optimizations :advanced
                     :pretty-print false}
- :dependencies '[[org.clojure/clojure "1.9.0-alpha13"]
-                 [org.clojure/clojurescript "1.9.229"]
-                 [funcool/cats "2.0.0"]
-                 [adzerk/boot-cljs "1.7.228-2" :scope "test"]])
+ :dependencies #(into %
+                 '[[org.clojure/clojure "1.9.0-alpha13"]
+                   [org.clojure/clojurescript "1.9.229"]
+                   [funcool/cats "2.0.0"]
+                   [adzerk/boot-cljs "1.7.228-2" :scope "test"]]))
 
-(require '[adzerk.boot-cljs :refer [cljs]])
-(require '[boot.pod :as pod])
-(require '[clojure.java.shell :as shell-helper])
-(require '[clojure.java.io :as io])
+(require '[adzerk.boot-cljs :refer [cljs]]
+         '[boot.pod :as pod]
+         '[clojure.java.shell :as shell-helper]
+         '[clojure.java.io :as io])
 
 (def copyright-message
   (str
@@ -22,6 +23,7 @@
    " */\n"))
 
 (deftask appscript
+  "Builds the Teamcart Goole Appscript plugin"
   [c clipboard bool "Copy result to clipboard"]
   (comp
    (with-post-wrap fs
@@ -37,6 +39,7 @@
           :in appscript-file))
        fs))
    (cljs :optimizations :advanced)
+   ;; inject copyright message
    (with-pre-wrap fs
      (let [new-dir (tmp-dir!)
            new-file (->
@@ -53,9 +56,4 @@
             :include #{#".*"}
             :exclude #{})
            commit!)))
-       
-   ;; todo add
-   
    (target)))
-         
- 

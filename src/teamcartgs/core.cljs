@@ -175,7 +175,6 @@
            #(extract-keys (get-result %)))
           (to-array-2d))
          ]
-      ;;(pr-str results)
       output-grid
       )))
 
